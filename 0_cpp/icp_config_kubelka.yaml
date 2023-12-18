@@ -1,0 +1,59 @@
+readingDataPointsFilters:
+- SimpleSensorNoiseDataPointsFilter:
+      sensorType: 0
+- SamplingSurfaceNormalDataPointsFilter:
+      ratio: 0.03
+      knn: 20
+      keepDensities: 1
+- ObservationDirectionDataPointsFilter:
+      x: 0
+      y: 0
+      z: 0
+- OrientNormalsDataPointsFilter:
+      towardCenter: 1
+- MaxDensityDataPointsFilter:
+      maxDensity: 100
+
+
+referenceDataPointsFilters:
+- SamplingSurfaceNormalDataPointsFilter:
+      ratio: 0.03
+      knn: 20
+      keepDensities: 1
+- MaxDensityDataPointsFilter:
+      maxDensity: 100
+
+matcher:
+  KDTreeMatcher:
+    knn: 3
+    epsilon: 3.16
+    maxDist: 0.5
+
+outlierFilters:
+- MaxDistOutlierFilter:
+      maxDist: 1.0
+- SurfaceNormalOutlierFilter:
+      maxAngle: 1.047
+- TrimmedDistOutlierFilter:
+      ratio: 0.9
+
+errorMinimizer:
+  PointToPlaneErrorMinimizer
+
+transformationCheckers:
+- CounterTransformationChecker:
+      maxIterationCount: 40
+- DifferentialTransformationChecker:
+      minDiffRotErr: 0.01
+      minDiffTransErr: 0.001
+      smoothLength: 4 
+- BoundTransformationChecker:
+      maxRotationNorm: 0.8
+      maxTranslationNorm: 3
+
+inspector:
+  NullInspector
+
+logger:
+  FileLogger
+

@@ -1,0 +1,32 @@
+#- SamplingSurfaceNormalDataPointsFilter:
+    #ratio: 0.001
+    #knn: 10
+    #epsilon: 1.33
+    #keepNormals: 1
+    #keepDensities: 1
+
+- FixStepSamplingDataPointsFilter:
+    startStep: 8
+
+- OctreeGridDataPointsFilter:
+ #use the efficent spatial representation of the pointcloud by the octree to sub-sample point in each leaf.
+    maxPointByNode: 10 # number of point under which the octree stop dividing. neg
+    maxSizeByNode: 0.1 # size of the bounding box under which the octree stop dividing. neg: 3-~600 2-~1600
+    samplingMethod: 3 # method to sample the octree: Centroid.
+
+#- RandomSamplingDataPointsFilter:
+## reduces the size of the point cloud by randomly dropping points.
+    #prob: 0.01 # probability to keep a point, one over decimation factor.
+
+- SurfaceNormalDataPointsFilter:
+    knn: 10
+    epsilon: 1.33
+    keepNormals: 1
+    #keepDensities: 1
+
+#- MaxDensityDataPointsFilter:
+    #maxDensity: 50
+
+#- ObservationDirectionDataPointsFilter
+
+#- OrientNormalsDataPointsFilter

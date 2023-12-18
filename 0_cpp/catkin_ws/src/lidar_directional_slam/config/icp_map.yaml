@@ -1,0 +1,49 @@
+readingDataPointsFilters:
+- IdentityDataPointsFilter
+
+referenceDataPointsFilters:
+- IdentityDataPointsFilter
+
+matcher:
+  KDTreeMatcher:
+# matches a point from the reading to its closest neighbors in the reference.
+    knn: 3
+    epsilon: 3.16
+    maxDist: 0.5
+
+outlierFilters:
+- MaxDistOutlierFilter:
+# considers as outlier links whose norms are above a fix threshold.
+      maxDist: 1.0
+- SurfaceNormalOutlierFilter:
+# Hard rejection threshold using the angle between the surface normal vector of the reading and the reference.
+# If normal vectors or not in the descriptor for both of the point clouds, does nothing.
+      maxAngle: 1.047
+#- GenericDescriptorOutlierFilter:
+      #source: reference
+      #descName: probabilityStatic
+
+errorMinimizer:
+# Point-to-plane error based on [Chen1991]
+  PointToPlaneErrorMinimizer
+
+transformationCheckers:
+- CounterTransformationChecker:
+# stops the ICP loop after a certain number of iterations.
+      maxIterationCount: 50
+- DifferentialTransformationChecker:
+#stops the ICP loop when the relative motions of rotation and translation components are below a fix thresholds.
+      minDiffRotErr: 0.001
+      minDiffTransErr: 0.01
+      smoothLength: 4
+- BoundTransformationChecker:
+# stops the ICP loop with an exception when the transformation values exceed bounds.
+      maxRotationNorm: 0.8
+      maxTranslationNorm: 15
+
+inspector:
+  NullInspector
+
+logger:
+  NullLogger
+#FileLogger

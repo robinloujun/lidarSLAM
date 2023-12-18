@@ -1,0 +1,17 @@
+<launch>
+    
+    <!--- Sim Time -->
+    <param name="/use_sim_time" value="true" />
+
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_loam)/launch/test.rviz" />
+
+    <!-- Parameters -->
+    <rosparam file = "$(find lidar_loam)/launch/config.yaml"/>
+
+    <!--- Lidar-LOAM -->
+    <node pkg="lidar_loam" type="LidarPreprocessing" name="LidarPreprocessing" output="screen"/>
+    <node pkg="lidar_loam" type="LidarOdometry" name="LidarOdometry" output="screen"/>
+    <node pkg="lidar_loam" type="LidarMapping" name="LidarMapping" output="screen"/>
+
+</launch>

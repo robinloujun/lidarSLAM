@@ -1,0 +1,16 @@
+preprocessing:
+  print_time: false
+
+odometry:
+  distortion: false
+  print_time: false
+  max_num_iter: 100
+  iter_count: 1
+  ground_truth_exists: false
+
+mapping:
+  print_time: true
+  max_num_iter: 50
+  iter_count: 1
+  loop_closure: false
+  sliding_window: true

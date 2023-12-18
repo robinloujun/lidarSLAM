@@ -1,0 +1,26 @@
+<launch>
+    <arg name="rviz" default="true" />
+
+    <node pkg="lidar_directional_slam" type="LidarOdometry" name="LidarOdometry" output="screen"/>
+
+    <!-- parameters -->
+    <rosparam file = "$(find lidar_directional_slam)/config/parameters.yaml"/>
+
+    <param name="use_sim_time" value="true" />
+
+    <group ns="LidarOdometry">
+        <!-- libpointmatcher -->
+        <param name = "filter1" value = "$(find lidar_directional_slam)/config/filter_first.yaml" />
+        <param name = "filter2" value = "$(find lidar_directional_slam)/config/filter_second.yaml" />
+        <param name = "filter3" value = "$(find lidar_directional_slam)/config/filter_third.yaml" />
+        <param name = "icp_libpointmatcher" value = "$(find lidar_directional_slam)/config/icp.yaml" />
+        <param name = "icp1" value = "$(find lidar_directional_slam)/config/icp_first.yaml" />
+        <param name = "icp2" value = "$(find lidar_directional_slam)/config/icp_second.yaml" />
+        <param name = "icp3" value = "$(find lidar_directional_slam)/config/icp_third.yaml" />
+        <param name = "odometry_only" value = "true"/>
+    </group>
+
+    <group if="$(arg rviz)">
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_directional_slam)/rviz/traj_visual.rviz"/>
+    </group>
+</launch>

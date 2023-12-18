@@ -1,0 +1,59 @@
+General:
+  world_frame: "world"
+  odom_frame: "odom"
+  ground_truth_frame: "base_link"
+  map_frame: "map"
+  sensor_frame: "sensor_link"
+
+#Mapping:
+  #tf_refresh_period: 0.01
+  #minimal_overlap: 0.5
+  #maximal_overlap: 0.9
+  #minimal_number_of_points: 500
+  #local_map_range: 120
+  #maximal_angle: 0.02
+  #priorDynamic: 0.5
+  #priorStatic: 0.5
+  #eps: 0.0001
+  #eps_a: 0.05
+  #eps_d: 0.02
+  #alpha: 0.99
+  #beta: 0.99
+  #maxDynamic: 0.95
+  #maximal_distance_for_new_point: 0.01
+
+#Initial:
+  ## Initial posituon and orientation
+  #position: {x: 0.0, y: 0.0, z: 0.0}
+  #orientation: {roll: 0.0, pitch: 0.0, yaw: 0.0}
+  ## Initial position and orientation noise
+  #position_sigma: {x: 0.1, y: 0.1, z: 0.1}
+  #orientation_sigma: {roll: 0.02, pitch: 0.02, yaw: 0.02}
+
+#PCL:
+  ## Preprocessing parameters
+  #random_filter: true # random sampling filter
+  #grid_filter: true # voxel grid filter
+  #statistical_outlier_filter: false # statistical outlier filter
+  #radius_outlier_filter: false # radius outlier filter
+  ## parameters for filter pyramid:
+  ## - random sampling filter: percentage (percentage of letf points)
+  ## - voxel grid filter: x, y, z (leaf size at each axis)
+  #filter_first_layer: {x: 0.8, y: 0.8, z: 0.8, percentage: 0.2}
+  #filter_second_layer: {x: 0.4, y: 0.4, z: 0.4, percentage: 0.2}
+  #filter_third_layer: {x: 0.15, y: 0.15, z: 0.15, percentage: 0.2}
+  ## parameters for statistical outlier filter
+  #number_neighbors: 10 # number of neighbors
+  #standard_deviation_mean_distance: 1.0 #
+  ## parameters for radius outlier filter:
+  #radius: 0.15
+  #radius_knn: 3
+
+  ## Generalized Iterative Closest Points
+  #icp_max_translation: 0.09 # maximal translation
+  #icp_max_rotation: 0.1 # maximal rotation
+  #icp_max_iteration: {first_layer: 10, second_layer: 5, third_layer: 4} # maximal number of iterations
+
+#Mapping:
+  #voxel_size: 0.1 # Size of voxel in meters
+  #voxels_per_side: 16 # number of voxels by each side of a block

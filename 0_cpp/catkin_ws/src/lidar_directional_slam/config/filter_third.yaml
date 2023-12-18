@@ -1,0 +1,34 @@
+- FixStepSamplingDataPointsFilter:
+# reduces the size of the point cloud by only keeping one point 
+# over step ones; with step varying in time from startStep 
+# to endStep, each iteration getting multiplied by stepMult.
+    startStep: 8
+
+# - RandomSamplingDataPointsFilter:
+# reduces the size of the point cloud by randomly dropping points.
+    # prob: 0.1 # probability to keep a point, one over decimation factor.
+
+#- OctreeGridDataPointsFilter:
+     #maxPointByNode: 40 # number of point under which the octree stop dividing.
+     #maxSizeByNode: 0.1 # size of the bounding box under which the octree stop dividing. neg:
+     #samplingMethod: 3
+
+#- VoxelGridDataPointsFilter:
+    #vSizeX: 0.6
+    #vSizeY: 0.6
+    #vSizeZ: 0.6
+
+- SurfaceNormalDataPointsFilter:
+# extracts the normal to each point by taking the eigenvector corresponding to the smallest eigenvalue of its nearest neighbors.
+#- SamplingSurfaceNormalDataPointsFilter:
+## decomposes the point-cloud space in boxes, by recursively splitting the cloud through axis-aligned hyperplanes.
+## When the number of points in a box reaches a value knn or lower, the filter computes the center of mass of these
+## points and its normal by taking the eigenvector corresponding to the smallest eigenvalue of all points in the box.
+    #ratio: 0.1
+    knn: 10
+    epsilon: 1.33
+    keepNormals: 1
+    keepDensities: 1
+
+- MaxDensityDataPointsFilter:
+    maxDensity: 40

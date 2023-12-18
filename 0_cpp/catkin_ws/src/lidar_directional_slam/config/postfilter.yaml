@@ -1,0 +1,12 @@
+#- CutAtDescriptorThresholdDataPointsFilter:
+    #descName: probabilityStatic
+    #useLargerThan: 0
+    #threshold: 0.4
+
+#- IdentityDataPointsFilter
+
+- OctreeGridDataPointsFilter:
+ #use the efficent spatial representation of the pointcloud by the octree to sub-sample point in each leaf.
+    #maxPointByNode: 2 # number of point under which the octree stop dividing. neg
+    maxSizeByNode: 0.1 # size of the bounding box under which the octree stop dividing. neg: 3-~600 2-~1600
+    samplingMethod: 3 # method to sample the octree: Centroid.
