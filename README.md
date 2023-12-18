@@ -14,7 +14,7 @@ sudo apt-get install libeigen3-dev
 
 ### Workspace Initialization
 ```
-cd ${path_to_lidarDirectionalSLAM}/2_cpp/catkin_ws/src
+cd ${path_to_lidarSLAM}/src
 bash init.sh
 ```
 
@@ -23,14 +23,14 @@ bash init.sh
 When compiling the code for the first time, the argument "-j1" is needed for message generation.
 
 ```shell
-cd ${path_to_lidarDirectionalSLAM}/2_cpp/catkin_ws
+cd ${path_to_lidarSLAM}/
 catkin_make -j1
 ```
 
 ### Use the package
 
 ```shell
-source ${path_to_lidarDirectionalSLAM}/2_cpp/catkin_ws/devel/setup.bash
+source ${path_to_lidarSLAM}/devel/setup.bash
 roscore
 rosbag play ~/Odom_rosbags/kitti_odometry_seq_00.bag --pause --clock
 roslaunch lidar_odometry test.launch
